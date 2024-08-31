@@ -1,5 +1,5 @@
 # npm
-app.js
+./app.js
 .vscode
 node_modules
 package-lock.json
