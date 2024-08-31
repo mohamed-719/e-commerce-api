@@ -1,4 +1,6 @@
 # npm
+app.js
+.vscode
 node_modules
 package-lock.json
 npm-shrinkwrap.json
