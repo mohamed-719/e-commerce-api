@@ -1,9 +1,9 @@
 {
   "name": "project-2-express",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "app.ts",
   "scripts": {
-      "start" : "nodemon app.js",
+    "start:dev": "nodemon app.ts",
     "start:prod": "node ./dist/app.js",
     "build": "tsc"
   },
@@ -13,6 +13,14 @@
   "description": "",
   "dependencies": {
     "axios": "^1.7.6",
-    "express": "^4.19.2"
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "mongoose": "^8.6.0"
+  },
+  "devDependencies": {
+    "@types/express": "^4.17.21",
+    "@types/node": "^22.5.2",
+    "nodemon": "^3.1.4",
+    "ts-node": "^10.9.2"
   }
 }

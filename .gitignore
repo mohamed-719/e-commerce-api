@@ -1,8 +1,9 @@
 # npm
 ./app.js
-.vscode
+./.vscode
 node_modules
-package-lock.json
+dist
+./package-lock.json
 npm-shrinkwrap.json
 *.log
 *.gz
