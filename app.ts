@@ -1,27 +1,18 @@
 import express from 'express';
 import mongoose from 'mongoose';
 import dotenv from 'dotenv'; 
-
+import dbConnection from './config/db';
+import categoriesRoute from './routes/categoriesRoute';
 const app:express.Application = express();
-
+app.use(express.json());
 dotenv.config();
+dbConnection();
 
 
-mongoose.connect('mongodb://localhost:27017/e-commerce')
-.then(() => {
-    console.log("Connected to MongoDB");
-}).catch((err) => {
-    console.error("Error connecting to MongoDB: ", err);    
-})
 
-app.get('/', (request : express.Request, response :express.Response) => {
-    response.send("Welcome to home");
-});
+app.use('/api/v1/categories', categoriesRoute)
 
-// app.get('/hello', (request : Request, response : Response) => {
-//     response.send("Hello World");
-// });
 
-app.listen(3000, () => {
-    console.log("Started on port 3000");
+app.listen(process.env.PORT, () => {
+    console.log(`Started on port ${process.env.PORT}`);
 });
