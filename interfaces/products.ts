@@ -11,8 +11,8 @@ export interface Products extends Document {
   sold: number;
   price: number;
   priceAfterDiscount: number;
-  cover: string;
+  cover: string;  
   images: string[];
   ratingAverage: number;
   ratingCount: number;
-};
+}; 
