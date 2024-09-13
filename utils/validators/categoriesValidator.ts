@@ -34,16 +34,15 @@ export const updateCategoryValidator: RequestHandler[] = [
 
 export const deleteCategoryValidator: RequestHandler[] = [
   check('id').isMongoId().withMessage('invalid mongo id')
-    // .custom(async(val: string, {req}) => {
-    // const subcategories = await subcategoriesModel.find({ category: val });
-    //       if (subcategories.length > 0 && req.body.id == val ) {
-    //     const bulkOption = subcategories.map((subcategories: Subcategories) => ({
-    //       deleteOne: { filter: { _id: subcategories._id } }
-    //     }))
-    //     await subcategoriesModel.bulkWrite(bulkOption)
-    //   }
-    // })
-    
+    .custom(async(val: string) => {
+    const subcategories = await subcategoriesModel.find({ category: val });
+          if (subcategories.length > 0 ) {
+        const bulkOption = subcategories.map((subcategories: Subcategories) => ({
+          deleteOne: { filter: { _id: subcategories._id } }
+        }))
+        await subcategoriesModel.bulkWrite(bulkOption)
+      }
+    })
     ,
   validatorMiddleware
 ];
