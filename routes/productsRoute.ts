@@ -1,7 +1,7 @@
 import { Router } from 'express';
-import { createProduct, deleteProduct, getAllProducts, getProduct, resizeProductImages, updateProduct, upload } from '../controllers/products';
+import { createProduct, deleteProduct, getAllProducts, getProduct, resizeProductImages, updateProduct, uploadProductImages } from '../controllers/products';
 import { createProductValidator, deleteProductValidator, getProductValidator, updateProductValidator } from '../utils/validators/productsValidator';
-import { uploadProductImages } from '../controllers/products';
+
 
 const productsRoute: Router = Router()
 productsRoute.route('/')
