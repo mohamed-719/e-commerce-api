@@ -5,19 +5,23 @@ import subcategoriesRoute from "./subcategoriesRoute";
 import ApiErrors from '../utils/apiErrors';
 import globalErrors from '../middlewares/globalErrors';
 import productsRoute from './productsRoute';
+import usersRoute from './usersRoute';
+import authRoute from './authRoute';
 
 
 
 const mountRoutes = (app:Application) => {
-  app.use((req: Request, res: Response, next: NextFunction) => {
-    res.cookie('cookies', req.csrfToken());
-    next();
-  });
+  // app.use((req: Request, res: Response, next: NextFunction) => {
+  //   res.cookie('cookies', req.csrfToken());
+  //   next();
+  // });
     app.use('/api/v1/categories', categoriesRoute);
     app.use('/api/v1/subcategories', subcategoriesRoute);
-      app.use('/api/v1/products', productsRoute)
+      app.use('/api/v1/products', productsRoute);
+        app.use('/api/v1/users', usersRoute);
+        app.use('/api/v1/auth', authRoute);
     app.all('*',(req: Request, res: Response, next: NextFunction) => {
-        return next( new ApiErrors(`this route ${req.originalUrl} not found`, 400   ))
+        return next( new ApiErrors(`this route ${req.originalUrl} not found`, 400 ))
     })
     app.use(globalErrors)
 

@@ -9,19 +9,8 @@ import asyncHandler from 'express-async-handler';
 import { uploadMultiImages } from "../middlewares/uploadImages";
 
 
-const multerStorage = multer.diskStorage({
-  destination: function (req, file, cb)  {
-    console.log(file);
-    cb(null, 'uploads')
-  },
-  filename: function (req, file, cb) { 
-    const ext = file.mimetype.split('/')[1];
-    const imageName: string = `product - ${Date.now()}.${ext}`;
-    cb(null, imageName);
-  }
-});
+
 export const uploadProductImages = uploadMultiImages([{ name: 'cover', maxCount: 1 }, { name: 'images', maxCount: 5 }])
-export const upload = multer({ storage : multerStorage });
 export const resizeProductImages = asyncHandler(async (req: Request, res: Response, next: NextFunction) => {
   // if (req.file) {
   //   const imgName = `product-${Date.now()}.webp`
