@@ -9,7 +9,10 @@ import productsRoute from './productsRoute';
 
 
 const mountRoutes = (app:Application) => {
-
+  app.use((req: Request, res: Response, next: NextFunction) => {
+    res.cookie('cookies', req.csrfToken());
+    next();
+  });
     app.use('/api/v1/categories', categoriesRoute);
     app.use('/api/v1/subcategories', subcategoriesRoute);
       app.use('/api/v1/products', productsRoute)

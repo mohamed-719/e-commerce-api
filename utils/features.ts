@@ -21,8 +21,8 @@ class Features {
     if (this.queryString.sort) {
       const sortBy: string = this.queryString.sort.split(',').join(' ')
       this.mongooseQuery = this.mongooseQuery.sort(sortBy);
-      //hear this => this.queryString.sort dont make make sort as newest to oldest
-    } else { this.mongooseQuery = this.mongooseQuery.sort('-createdAt') }
+      //hear this => this.queryString.sort do not make sort as newest to oldest
+    } else { this.mongooseQuery = this.mongooseQuery.sort('-createdAt') } //
     return this;
   }
   limitFields() {
@@ -30,7 +30,7 @@ class Features {
       const fields: string = this.queryString.fields.split(',').join(' ')
       this.mongooseQuery = this.mongooseQuery.select(fields);
     }
-    // else { this.mongooseQuery = this.mongooseQuery.select('-__v'); }
+    // else { this.mongooseQuery = this.mongooseQuery.select('-__v'); } ====> //hear incase one if update 1
     return this;
   }
   search(modelName: string) {

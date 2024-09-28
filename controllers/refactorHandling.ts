@@ -22,8 +22,9 @@ export const getAll = <modelType>(model: Model<any>, modelName: string) =>
     }
     const documentsCount: number = searchLength || await model.find(filterData).countDocuments()
     const features: Features = new Features(model.find(filterData), req.query).filter().sort().limitFields().search(modelName).pagination(documentsCount);
+    //hear but the mongooseQuery in object 
     const { mongooseQuery, paginationResult } = features
-    const documents: modelType[] = await mongooseQuery;
+    const documents: modelType[] = await mongooseQuery; // hear make execute by query
     res.status(200).json({ length: documents.length, pagination: paginationResult, data: documents })
   });
 
