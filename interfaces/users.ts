@@ -17,8 +17,9 @@ export interface Users extends Document {
   resetCodeVerify: boolean | undefined;
 }
 
+
 type UserRoles = 'manager' | 'admin' | 'user'
-type UserAddress = {
+export interface UserAddress {
   street: string;
   city: string;
   state: string;

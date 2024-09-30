@@ -8,6 +8,7 @@ import ApiErrors from "../utils/apiErrors";
 import { createResetToken, createToken } from "../utils/createToken";
 import Jwt from 'jsonwebtoken';
 import sendMail from "../utils/sendMail";
+import rateLimit from "express-rate-limit";
 
 export const signup = asyncHandler(async (req: Request, res: Response, next: NextFunction) => {
   const user: Users = await usersModel.create(req.body);
@@ -116,3 +117,9 @@ export const resetCode = asyncHandler(async (req: Request, res: Response, next: 
   await user.save({ validateModifiedOnly: true });
   res.status(200).json({ message: 'your password has been changed' });
 });
+
+
+export const limitRequest = rateLimit({
+  windowMs: 60 * 60 * 1000,
+  limit: 5
+})
