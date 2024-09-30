@@ -75,7 +75,7 @@ export const forgerPassword = asyncHandler(async (req: Request, res: Response, n
     console.log(err);
     return next(new ApiErrors('error sending email', 400))
   }
-  const resetToken: string = createResetToken(user._id,'10m');
+  const resetToken: string = createResetToken(user._id,'m10');
   res.status(200).json({ message: 'reset password code sent to your email', resetToken })
 });
 // verify code
@@ -118,8 +118,8 @@ export const resetCode = asyncHandler(async (req: Request, res: Response, next: 
   res.status(200).json({ message: 'your password has been changed' });
 });
 
-
-export const limitRequest = rateLimit({
+export const authLimit = rateLimit({
   windowMs: 60 * 60 * 1000,
-  limit: 5
+  limit: 100,
+  message: 'try again later'
 })
