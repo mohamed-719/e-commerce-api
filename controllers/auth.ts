@@ -75,7 +75,7 @@ export const forgerPassword = asyncHandler(async (req: Request, res: Response, n
     console.log(err);
     return next(new ApiErrors('error sending email', 400))
   }
-  const resetToken: string = createResetToken(user._id,'m10');
+  const resetToken: string = createResetToken(user._id);
   res.status(200).json({ message: 'reset password code sent to your email', resetToken })
 });
 // verify code
